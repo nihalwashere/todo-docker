@@ -82,6 +82,15 @@ app.listen(Config.PORT, () => {
   try {
     logger.info(`App is now running on port ${Config.PORT}!!!`);
 
+    console.debug("MONGODB_USER : ", process.env.MONGODB_USER);
+    console.debug("MONGODB_PASSWORD : ", process.env.MONGODB_PASSWORD);
+    console.debug("MONGODB_LOCAL_PORT : ", process.env.MONGODB_LOCAL_PORT);
+    console.debug("MONGODB_DATABASE : ", process.env.MONGODB_DATABASE);
+
+    console.debug("PORT : ", process.env.PORT);
+    console.debug("APP_ENV : ", process.env.APP_ENV);
+    console.debug("JWT_SECRET_KEY : ", process.env.JWT_SECRET_KEY);
+
     DatabaseService.getInstance(); // init database
   } catch (error) {
     logger.error("Failed to start server -> error : ", error);
