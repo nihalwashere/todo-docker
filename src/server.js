@@ -45,7 +45,7 @@ app.use(
 );
 app.use(express.raw({ verify: rawBodySaver, type: "*/*", limit: "50mb" }));
 
-// const whitelist = ["http://localhost:3000", "https://localhost:3000"];
+const whitelist = ["http://localhost:3000", "https://localhost:3000"];
 
 app.use(
   cors({
@@ -54,14 +54,14 @@ app.use(
       // (like mobile apps or curl requests)
       if (!origin) return callback(null, true);
 
-      // if (whitelist.indexOf(origin) === -1) {
-      //   return callback(
-      //     new Error(
-      //       "The CORS policy for this site does not allow access from the specified Origin."
-      //     ),
-      //     false
-      //   );
-      // }
+      if (whitelist.indexOf(origin) === -1) {
+        return callback(
+          new Error(
+            "The CORS policy for this site does not allow access from the specified Origin."
+          ),
+          false
+        );
+      }
 
       return callback(null, true);
     },
